@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "builds": [{ "src": "api/openai.js", "use": "@vercel/node" }],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/openai.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "^/api/(.*)", "dest": "/api/$1" },
+    { "src": "/favicon\\.ico", "dest": "/favicon.ico" },
+    { "src": ".*", "dest": "/index.html" }
   ]
 }
