@@ -1,21 +1,19 @@
-const form = document.querySelector("form");
-const outputBox = document.createElement("div");
-outputBox.classList.add("output");
-document.body.appendChild(outputBox);
-
-form.addEventListener("submit", async (e) => {
+document.getElementById("ideaForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const idea1 = form.querySelectorAll("input")[0].value;
-  const idea2 = form.querySelectorAll("input")[1].value;
+  const [i1, i2] = e.target.querySelectorAll("input");
+  const output = document.getElementById("output");
+  output.textContent = "✨ Procesando...";
 
-  outputBox.innerHTML = "<p>Procesando ideas...</p>";
-
-  const response = await fetch("/api/openai", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ idea1, idea2 })
-  });
-
-  const data = await response.json();
-  outputBox.innerHTML = `<div class="resultado">${data.result}</div>`;
+  try {
+    const resp = await fetch("/api/openai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idea1: i1.value, idea2: i2.value || "" }),
+    });
+    const data = await resp.json();
+    // El modelo devuelve HTML simple en data.result
+    output.innerHTML = data.result || data.error || "Sin respuesta.";
+  } catch {
+    output.textContent = "Error de conexión.";
+  }
 });
