@@ -217,5 +217,23 @@
     closeModal.onclick = () => (modal.style.display = "none");
     window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
   </script>
+  <script>
+const button = document.querySelector("button");
+const inputs = document.querySelectorAll("input");
+
+button.addEventListener("click", async () => {
+  const question = inputs[0].value + " " + inputs[1].value;
+
+  const res = await fetch("/api/universal", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question })
+  });
+
+  const data = await res.json();
+  alert(data.output); // puedes luego mostrarlo en pantalla, no solo en alert
+});
+</script>
+
 </body>
 </html>
