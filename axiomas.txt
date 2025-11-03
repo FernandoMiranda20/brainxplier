@@ -1,0 +1,2 @@
+Axioma 1: toda semilla genera 30 planes posibles.
+Axioma 2: cada plan debe incluir 50 pasos,  50 riesgos y 50 métricas.
