@@ -1,2 +1,9 @@
-Axioma 1: toda semilla genera 30 planes posibles.
-Axioma 2: cada plan debe incluir 50 pasos,  50 riesgos y 50 métricas.
+{
+  "capas": [
+    {"nombre": "gramatica", "n": 30},
+    {"nombre": "semantica", "n": 30},
+    {"nombre": "ontologia", "n": 30},
+    {"nombre": "deontologia", "n": 30},
+    {"nombre": "epistemologia", "n": 30}
+  ]
+}
